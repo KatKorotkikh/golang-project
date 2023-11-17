@@ -9,10 +9,10 @@ import (
 var validUserIDs sync.Map
 
 func main() {
-	http.HandleFunc("/dyn-user", HelloUser)
-	http.HandleFunc("/check-userid", CheckUserID)
+	http.HandleFunc("/dyn-user", ValidateUser(HelloUser))
+	http.HandleFunc("/check-userid", ValidateUser(CheckUserID))
 	http.HandleFunc("/add-user", AddUser)
-	http.HandleFunc("/delete-user", DeleteUser)
+	http.HandleFunc("/delete-user", ValidateUser(DeleteUser))
 	http.ListenAndServe("0.0.0.0:8080", http.DefaultServeMux)
 }
 
